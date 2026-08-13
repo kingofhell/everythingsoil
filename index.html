@@ -3,152 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everything Soil - Preview</title>
+    <title>Everything Soil - Premium Template</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --text-color: #f3f4f6;
-            --accent-color: #10b981;
-            --secondary-color: #3b82f6;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --primary-earth: #2c5e3b;
+            --primary-earth-hover: #1e4228;
+            --accent-green: #5ca374;
+            --accent-light: #eef7f2;
+            --dark-soil: #1a1512;
+            --text-dark: #2d2621;
+            --text-muted: #6e655f;
+            --body-bg: #faf9f6;
         }
 
         body {
-            font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(250, 249, 246, 0.8) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(44, 94, 59, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary-earth) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark) !important;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-earth) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 8rem 0 6rem 0;
+            background: radial-gradient(circle at 90% 10%, rgba(92, 163, 116, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 10% 90%, rgba(44, 94, 59, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-badge {
+            background-color: var(--accent-light);
+            color: var(--primary-earth);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(44, 94, 59, 0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-earth {
+            background-color: var(--primary-earth);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-earth:hover {
+            background-color: var(--primary-earth-hover);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 94, 59, 0.2);
+        }
+
+        .btn-outline-earth {
+            color: var(--primary-earth);
+            border: 2px solid var(--primary-earth);
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            background-color: transparent;
+        }
+
+        .btn-outline-earth:hover {
+            background-color: var(--primary-earth);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .feature-card {
+            background: white;
+            border: 1px solid rgba(44, 94, 59, 0.06);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(44, 94, 59, 0.05);
+            border-color: rgba(44, 94, 59, 0.15);
+        }
+
+        .feature-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background-color: var(--accent-light);
+            color: var(--primary-earth);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Ambient Glow Background */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
-            top: 20%;
-            left: 25%;
-            z-index: 0;
-            filter: blur(40px);
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
-            bottom: 15%;
-            right: 20%;
-            z-index: 0;
-            filter: blur(50px);
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            width: 90%;
-            padding: 2.5rem;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transform: translateY(0);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-4px);
-            border-color: rgba(16, 185, 129, 0.25);
-        }
-
-        .logo-mark {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: #fff;
-            font-size: 2rem;
-            font-weight: bold;
-            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
         }
 
-        h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(to right, #ffffff, #d1d5db);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Footer */
+        footer {
+            background-color: var(--dark-soil);
+            color: #d7d1cc;
+            border-top: 5px solid var(--primary-earth);
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #9ca3af;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+        footer a {
+            color: #b3a9a2;
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            color: var(--accent-color);
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 0.6; }
-        }
-
-        .footer {
-            font-size: 0.85rem;
-            color: #6b7280;
+        footer a:hover {
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-mark">🌱</div>
-        <h1>Everything Soil</h1>
-        <div class="status-badge">
-            <span style="width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%; display: inline-block;"></span>
-            GitHub Pages Test Setup Successful
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-tree-fill"></i>
+                <span>everythingsoil</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2 mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-earth w-100" href="#get-started">Get Started</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <p>Your workspace is ready. Once this page is live and verified, we can start building your custom website designs and content.</p>
-        <div class="footer">
-            Built with Antigravity
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center min-vh-100">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="hero-badge mb-4">
+                        <i class="bi bi-stars"></i> New Premium Template Loaded
+                    </div>
+                    <h1 class="display-4 fw-extrabold mb-3">
+                        Nurturing the Ground Beneath Our Feet
+                    </h1>
+                    <p class="lead text-muted mb-4">
+                        Discover the science, the stories, and the solutions for healthy soil management. A static site built to grow with your vision.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="#features" class="btn btn-earth">Explore Features</a>
+                        <a href="#about" class="btn btn-outline-earth">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5 bg-white rounded-5 shadow-sm border border-light text-center">
+                        <div class="display-1 text-success mb-3"><i class="bi bi-flower1"></i></div>
+                        <h3 class="h4 mb-3">Template Ready</h3>
+                        <p class="text-muted">This template is optimized for GitHub Pages hosting. Modify it, style it, and build your content here.</p>
+                        <hr class="my-4 opacity-50">
+                        <div class="row g-3 text-start">
+                            <div class="col-6">
+                                <div class="small text-muted">CSS Framework</div>
+                                <div class="fw-bold">Bootstrap 5.3</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">Icons</div>
+                                <div class="fw-bold">Bootstrap Icons</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-white border-top border-bottom">
+        <div class="container py-5">
+            <div class="text-center max-width-md mx-auto mb-5">
+                <h2 class="display-6 fw-bold">Everything You Need to Get Started</h2>
+                <p class="text-muted">A robust foundation designed to look stunning on any screen.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <h3>Fast & Responsive</h3>
+                        <p class="text-muted mb-0">Built on Bootstrap 5's powerful grid system, looking perfect on mobile, tablet, and desktop.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-palette-fill"></i>
+                        </div>
+                        <h3>Clean Aesthetics</h3>
+                        <p class="text-muted mb-0">Beautiful typography, rich earthy tones, and micro-interactions that elevate the user experience.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-github"></i>
+                        </div>
+                        <h3>GitHub Pages Ready</h3>
+                        <p class="text-muted mb-0">Fully static architecture, perfect for free, zero-config deployment via GitHub Pages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <a class="navbar-brand d-flex align-items-center gap-2 mb-3 text-white" href="#">
+                        <i class="bi bi-tree-fill text-success"></i>
+                        <span class="text-white">everythingsoil</span>
+                    </a>
+                    <p class="small text-muted max-width-sm">
+                        Sharing knowledge, insight, and resources about soil science and sustainable agriculture.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h5 class="text-white mb-3 small text-uppercase fw-bold">Navigation</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h5 class="text-white mb-3 small text-uppercase fw-bold">Resources</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="https://getbootstrap.com" target="_blank" rel="noopener">Bootstrap Docs</a></li>
+                        <li><a href="https://icons.getbootstrap.com" target="_blank" rel="noopener">Bootstrap Icons</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary opacity-25">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+                <p class="small text-muted mb-0">&copy; 2026 everythingsoil. All rights reserved.</p>
+                <p class="small text-muted mb-0">Built with Antigravity</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
