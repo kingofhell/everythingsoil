@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Panja Bootham (Five Elements) - Everything Soil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="text-center mb-5 py-4">
+        <h1 class="display-4 fw-bold text-white mb-3">The Five Elements</h1>
+        <p class="lead text-muted max-width-md mx-auto" style="max-width: 700px;">
+            The universe and the human body are made of five basic elements. By understanding and experiencing them in nature, we can connect with our inner awareness.
+        </p>
+    </div>
+
+    <!-- Elements Grid -->
+    <div class="row g-4 justify-content-center">
+        {% for element in elements %}
+        <div class="col-lg-4 col-md-6">
+            <div class="p-5 glass-card h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="fs-1 mb-4">
+                        {% if element.key == 'earth' %}🌱{% elif element.key == 'water' %}💧{% elif element.key == 'fire' %}🔥{% elif element.key == 'air' %}💨{% else %}🌌{% endif %}
+                    </div>
+                    <h3 class="text-white fw-bold mb-3">{{ element.name }}</h3>
+                    <p class="text-muted mb-4">{{ element.description }}</p>
+                </div>
+                <a href="{% url 'soil:element_detail' element.slug %}" class="btn btn-outline-success w-100 py-2 border-secondary" style="border-radius: 8px;">Explore {{ element.name }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Nature and human experience -->
+    <div class="p-5 glass-card my-5 text-center bg-transparent">
+        <h4 class="text-white fw-bold mb-3">Reflective Practices</h4>
+        <p class="text-muted max-width-md mx-auto mb-4" style="max-width: 600px;">
+            Our journey helps you observe how elements express themselves around you—the temperature, wind patterns, ground moisture, breath, and space.
+        </p>
+        {% if user.is_authenticated %}
+            <span class="badge bg-success-subtle text-success p-2 px-3 border border-success-subtle">Ready to complete practices!</span>
+        {% else %}
+            <a href="{% url 'account_login' %}" class="gradient-button text-decoration-none d-inline-block">Sign In to Record Practices</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

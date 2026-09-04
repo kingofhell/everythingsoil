@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up - Everything Soil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="p-5 glass-card">
+                <h2 class="text-center text-white mb-4 fw-bold">Create Account</h2>
+                
+                <form method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger bg-dark border-danger text-white mb-3">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div><strong>{{ field.label }}:</strong> {{ error }}</div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <label for="id_email" class="form-label text-muted">Email address</label>
+                        <input type="email" name="email" id="id_email" class="form-control bg-dark text-white border-secondary" placeholder="email@example.com" value="{{ form.email.value|default:'' }}" required>
+                        <div class="form-text text-muted small">Your email is safe with us and will be your login identity.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_password1" class="form-label text-muted">Password</label>
+                        <input type="password" name="password1" id="id_password1" class="form-control bg-dark text-white border-secondary" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="id_password2" class="form-label text-muted">Confirm Password</label>
+                        <input type="password" name="password2" id="id_password2" class="form-control bg-dark text-white border-secondary" placeholder="••••••••" required>
+                    </div>
+                    
+                    <button type="submit" class="gradient-button w-100 py-2.5 mb-3">Register Account</button>
+                </form>
+                
+                <div class="text-center text-muted small">
+                    Already have an account? <a href="{% url 'account_login' %}" class="text-success text-decoration-none fw-bold">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

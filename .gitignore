@@ -1,0 +1,30 @@
+# Environment and Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+notes
+client_secret*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+db.sqlite3.bak
+staticfiles/
+media/
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db

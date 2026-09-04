@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ element.name }} - Five Elements - Everything Soil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="text-center mb-5 py-4">
+        <div class="fs-1 mb-3">
+            {% if element.key == 'earth' %}🌱{% elif element.key == 'water' %}💧{% elif element.key == 'fire' %}🔥{% elif element.key == 'air' %}💨{% else %}🌌{% endif %}
+        </div>
+        <h1 class="display-4 fw-bold text-white mb-2">{{ element.name }} Element</h1>
+        <p class="lead text-muted max-width-md mx-auto" style="max-width: 600px;">{{ element.description }}</p>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100">
+                <h3 class="text-white fw-bold h4 mb-3">Meaning in Nature</h3>
+                {% if element.key == 'earth' %}
+                    <p class="text-muted">Earth represents structure, solidity, and physical form. It is the soil, the rock, and the structural skeleton of landscapes that supports forests and holds nutrients.</p>
+                {% elif element.key == 'water' %}
+                    <p class="text-muted">Water represents flow, cohesion, and life-carrying capacity. It fills rivers, feeds root systems, and links geological structures with metabolic processes.</p>
+                {% elif element.key == 'fire' %}
+                    <p class="text-muted">Fire is transformation, solar radiation, and metabolic activity. It drives plant photosynthesis and fuels chemical changes in the soil.</p>
+                {% elif element.key == 'air' %}
+                    <p class="text-muted">Air is breathing, gas exchange, and atmospheric movement. It supplies nitrogen and carbon dioxide, allowing plants to respire.</p>
+                {% else %}
+                    <p class="text-muted">Space is the cosmic container of all physical things. It provides the vacuum, freedom, and spatial volume required for growth.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100">
+                <h3 class="text-white fw-bold h4 mb-3">Traditional & Cultural View</h3>
+                {% if element.key == 'earth' %}
+                    <p class="text-muted">In ancient tradition, Earth is seen as Prithvi—the grounding mother. It embodies patience, holding, and absolute structural stability.</p>
+                {% elif element.key == 'water' %}
+                    <p class="text-muted">Water is Apas—associated with purity, adaptability, and healing. Traditional tanks and temple steps were engineered to preserve water purity.</p>
+                {% elif element.key == 'fire' %}
+                    <p class="text-muted">Fire is Agni—the primary transformer. It represents metabolic digestion, clarity of vision, and internal warmth.</p>
+                {% elif element.key == 'air' %}
+                    <p class="text-muted">Air is Vayu—the life force or Prana. In Tamil texts, Vayu is associated with movement, life-breath, and inner wind channels.</p>
+                {% else %}
+                    <p class="text-muted">Space is Akasha—the origin of sound and expansion. It represents limitless capacity, freedom, and non-attachment.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Science and Practices -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100 border-start border-success border-3">
+                <h3 class="text-white fw-bold h4 mb-3">Scientific Perspective</h3>
+                {% if element.key == 'earth' %}
+                    <p class="text-muted small">Ecology studies earth through soil taxonomy, minerals, soil organic matter, and structural porosity. It looks at how organic carbon supports microbial habitats and soil structural integrity.</p>
+                {% elif element.key == 'water' %}
+                    <p class="text-muted small">Hydrology analyzes capillary action, soil saturation parameters, infiltration rates, and the critical role of riparian zones in filtration.</p>
+                {% elif element.key == 'fire' %}
+                    <p class="text-muted small">Thermodynamics and biochemistry track how thermal heat influences biological reaction rates and how solar photosynthesis stores carbon.</p>
+                {% elif element.key == 'air' %}
+                    <p class="text-muted small">Atmospheric science tracks nitrogen fixation by root bacteria, oxygen aeration parameters, and gas carbon fluxes in healthy soil ecosystems.</p>
+                {% else %}
+                    <p class="text-muted small">Physics and spatial ecology map territory dimensions, root spacing, and spatial canopy patterns that maximize access to sunlight.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100 border-start border-primary border-3">
+                <h3 class="text-white fw-bold h4 mb-3">Reflective Practice</h3>
+                {% if element.key == 'earth' %}
+                    <p class="text-muted small"><strong>Practice: Grounding (10 mins)</strong><br>Walk barefoot on natural soil. Feel the texture, density, and temperature of the ground. Quietly focus on structural posture alignment and feel supported by the earth.</p>
+                {% elif element.key == 'water' %}
+                    <p class="text-muted small"><strong>Practice: Hydration Awareness (10 mins)</strong><br>Slowly drink a glass of pure water. Observe its movement through the body. Contemplate moisture patterns, rain cycles, and flow in your surrounding area.</p>
+                {% elif element.key == 'fire' %}
+                    <p class="text-muted small"><strong>Practice: Sun Salutation (15 mins)</strong><br>Face the morning sun and sit quietly. Feel solar warmth radiating through your skin. Trace energy metabolic transformations in plants and your body.</p>
+                {% elif element.key == 'air' %}
+                    <p class="text-muted small"><strong>Practice: Conscious Respiration (10 mins)</strong><br>Practice slow abdominal breathing in an open nature area. Feel the cool air entry and exit, connecting you directly with forest oxygen cycles.</p>
+                {% else %}
+                    <p class="text-muted small"><strong>Practice: Spacious Observation (15 mins)</strong><br>Sit in an open field or roof looking at the horizon/sky. Focus on spatial volume. Observe thoughts passing by without holding on, matching spaciousness.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience at the Center -->
+    <div class="p-5 glass-card text-center my-5 bg-transparent border border-secondary-subtle">
+        <h3 class="text-white fw-bold mb-3">Experience {{ element.name }} at our Farm</h3>
+        <p class="text-muted max-width-md mx-auto mb-4" style="max-width: 600px;">
+            Our physical center features dedicated outdoor spaces (gardens, ponds, pathways) engineered to help you contemplate this specific element.
+        </p>
+        <a href="{% url 'soil:panja_bootham' %}" class="btn btn-outline-light px-4 py-2 border-secondary" style="border-radius: 8px;">Back to Elements</a>
+    </div>
+</div>
+{% endblock %}

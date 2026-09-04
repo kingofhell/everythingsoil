@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Soil Science & Life - Everything Soil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="text-center mb-5 py-4">
+        <h1 class="display-4 fw-bold text-white mb-3">Understanding <span style="background: linear-gradient(135deg, #10b981, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Soil</span></h1>
+        <p class="lead text-muted max-width-md mx-auto" style="max-width: 700px;">
+            Soil is not just dirt. It is a living, breathing ecosystem, the silent container of life, and the interface where all five natural elements meet.
+        </p>
+    </div>
+
+    <!-- What is Soil & Soil and Life -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100">
+                <h3 class="text-white fw-bold mb-3">What is Soil?</h3>
+                <p class="text-muted">
+                    Scientifically, soil is a mixture of minerals, organic matter, gases, liquids, and countless organisms. From a natural perspective, it is the Earth element dynamic interface. It transforms rock into nutrients through weathering (Water/Fire), breath exchange (Air), and holds space for roots to anchor and grow.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100">
+                <h3 class="text-white fw-bold mb-3">Soil and Life</h3>
+                <p class="text-muted">
+                    Healthy soil is teeming with biodiversity. Earthworms, fungi, bacteria, and insects build complex networks that cycle nutrients and clean water. Without these micro-creatures, plants cannot digest mineral nutrients, and terrestrial ecosystems collapse.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid: Food, Farming, Water -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <h4 class="text-white fw-bold mb-3">Soil & Food</h4>
+                <p class="text-muted small">
+                    95% of our food comes directly or indirectly from soil. Mineral depletion in soil results in vitamin and nutrient deficits in the crops we eat, affecting human vitality directly.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <h4 class="text-white fw-bold mb-3">Soil & Water</h4>
+                <p class="text-muted small">
+                    Healthy soil rich in organic carbon stores enormous volumes of water. This prevents runoff, stops erosion, feeds underground aquifers, and guarantees crop hydration during dry spells.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <h4 class="text-white fw-bold mb-3">Soil & Farming</h4>
+                <p class="text-muted small">
+                    Traditional natural farming works with soil biology instead of chemical inputs. It enhances soil structure using cover crops, green manure, composting, and multi-layer farming.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Soil Restoration & Traditional Knowledge -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100 border-start border-success border-3">
+                <h3 class="text-white fw-bold mb-3">Soil Restoration Methods</h3>
+                <p class="text-muted mb-3">
+                    Restoring degraded lands requires mimicking natural succession and boosting soil organic matter (SOM). Key practices include:
+                </p>
+                <ul class="text-muted small">
+                    <li class="mb-2"><strong>No-till Farming:</strong> Preserves fungal networks and structure.</li>
+                    <li class="mb-2"><strong>Cover Cropping:</strong> Legumes fix nitrogen and feed microbes.</li>
+                    <li class="mb-2"><strong>Organic Mulching:</strong> Retains moisture and buffers extreme soil heat.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100 border-start border-primary border-3">
+                <h3 class="text-white fw-bold mb-3">Traditional Knowledge</h3>
+                <p class="text-muted mb-3">
+                    Ancient cultures understood soil as the mother. In Tamil tradition, land classifications (Kurinji, Mullai, Marutham, Neithal, Palai) reflect deep scientific understanding of soil moisture, suitability, and local biodiversity stewardship.
+                </p>
+                <p class="text-muted small">
+                    We combine these traditional wisdom values with modern scientific biology parameters to build a holistic soil recovery plan.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA: Experience Soil -->
+    <div class="p-5 glass-card text-center my-5 bg-transparent border border-success-subtle">
+        <h3 class="text-white fw-bold mb-3">Experience Soil at our Farm</h3>
+        <p class="text-muted max-width-md mx-auto mb-4" style="max-width: 600px;">
+            Touch the soil, observe microbial activity under microscope, and learn compost preparation during our weekend farm visits.
+        </p>
+        <a href="{% url 'soil:home' %}" class="gradient-button text-decoration-none d-inline-block">Go back Home</a>
+    </div>
+</div>
+{% endblock %}

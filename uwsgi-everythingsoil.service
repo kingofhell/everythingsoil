@@ -1,0 +1,16 @@
+[Unit]
+Description=uWSGI instance to serve Everything Soil Django app
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/data/everythingsoil
+ExecStart=/data/everythingsoil/venv/bin/uwsgi --ini /data/everythingsoil/uwsgi.ini
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

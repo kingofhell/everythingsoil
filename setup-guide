@@ -1,0 +1,98 @@
+# Everything Soil Server Initial Setup Guide
+
+Connect to server:
+```bash
+ssh -i /c/Users/mmvrh/scode/lite/llproj.pem ubuntu@3.110.41.198
+```
+
+---
+
+### Step 1: Clone Repository in `/data/`
+
+```bash
+cd /data
+sudo git clone <YOUR_GIT_REPO_URL> everythingsoil
+sudo chown -R ubuntu:www-data /data/everythingsoil
+cd /data/everythingsoil
+```
+
+---
+
+### Step 2: Create Virtual Environment and Install Dependencies
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+---
+
+### Step 3: Set up Production `.env`
+
+```bash
+cp .env.example .env
+nano .env
+# Fill in real SECRET_KEY, ALLOWED_HOSTS, DATABASE_URL, GOOGLE_CLIENT_ID, etc.
+```
+
+---
+
+### Step 4: Create Database in AWS RDS MySQL (Run Once)
+
+MySQL / AWS RDS does not automatically create new databases. Create the `everythingsoil` database schema in RDS:
+
+```bash
+mysql -h llproj.c76yuaqsah3r.ap-south-1.rds.amazonaws.com -P 3306 -u admin -p -e "CREATE DATABASE IF NOT EXISTS everythingsoil CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+```
+
+---
+
+### Step 5: Run Initial Migrations & Static Collection
+
+```bash
+python manage.py migrate --settings=ets.settings.prod
+python manage.py collectstatic --settings=ets.settings.prod --noinput
+```
+
+---
+
+### Step 5: Configure systemd Service for uWSGI
+
+```bash
+sudo cp /data/everythingsoil/uwsgi-everythingsoil.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl start uwsgi-everythingsoil
+sudo systemctl enable uwsgi-everythingsoil
+sudo systemctl status uwsgi-everythingsoil
+```
+
+---
+
+### Step 6: Configure Nginx Server Block
+
+```bash
+sudo cp /data/everythingsoil/everythingsoil.nginx.conf /etc/nginx/sites-available/everythingsoil.com
+sudo ln -s /etc/nginx/sites-available/everythingsoil.com /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+---
+
+### Step 7: Obtain SSL Certificate with Certbot
+
+```bash
+sudo certbot --nginx -d everythingsoil.com -d www.everythingsoil.com
+```
+
+---
+
+### Step 8: Subsequent Deployments
+
+For future updates, simply execute:
+```bash
+chmod +x /data/everythingsoil/deploy.sh
+sudo /data/everythingsoil/deploy.sh
+```

@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+
+{% block title %}Everything Soil - Gateway to Nature & Five Elements{% endblock %}
+
+{% block content %}
+<!-- Section 1: Hero -->
+<div class="container mb-5">
+    <div class="row align-items-center py-5">
+        <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+            <h1 class="display-3 fw-bold text-white mb-3">
+                Connect with <span style="background: linear-gradient(135deg, #10b981, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Soil & Element Journey</span>
+            </h1>
+            <p class="lead text-muted fs-5 mb-4">
+                Soil is the foundation of life. Explore the five elements of nature—Earth, Water, Fire, Air, and Space—through observation, yoga, meditation, and lived experience at our physical center.
+            </p>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' %}" class="gradient-button me-3 text-decoration-none d-inline-block">View My Profile</a>
+                {% else %}
+                    <a href="{% url 'account_login' %}" class="gradient-button me-3 text-decoration-none d-inline-block">Begin Your Journey</a>
+                {% endif %}
+                <a href="{% url 'soil:panja_bootham' %}" class="btn btn-outline-secondary px-4 py-2 border-2" style="border-radius: 8px;">Explore the Elements</a>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <div class="p-5 glass-card d-inline-block text-start" style="max-width: 450px;">
+                <h3 class="h4 text-white mb-3">Soil Composition Analysis</h3>
+                <p class="text-muted">A typical healthy topsoil consists of:</p>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>Mineral Matter (Earth)</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 6px;">
+                        <div class="progress-bar bg-success" style="width: 45%"></div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>Water</span>
+                        <span>25%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 6px;">
+                        <div class="progress-bar bg-primary" style="width: 25%"></div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>Air</span>
+                        <span>25%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 6px;">
+                        <div class="progress-bar bg-info" style="width: 25%"></div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>Organic Matter (Life)</span>
+                        <span>5%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 6px;">
+                        <div class="progress-bar bg-warning" style="width: 5%"></div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <span class="badge bg-success-subtle text-success p-2 px-3 border border-success-subtle">Soil Quality: Optimal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 2: Why Soil? -->
+<div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">Why Soil?</h2>
+        <p class="text-muted">Understanding the source that sustains biodiversity and the food chain.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <div class="mb-3 text-success fs-3">🌱</div>
+                <h4 class="text-white h5 mb-3">Soil Biology</h4>
+                <p class="text-muted mb-0">A single teaspoon of healthy soil contains more living organisms than there are people on Earth.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <div class="mb-3 text-primary fs-3">💧</div>
+                <h4 class="text-white h5 mb-3">Water Security</h4>
+                <p class="text-muted mb-0">Organic rich soil holds water like a sponge, mitigating both droughts and local floods naturally.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <div class="mb-3 text-warning fs-3">🍂</div>
+                <h4 class="text-white h5 mb-3">Carbon Sequestration</h4>
+                <p class="text-muted mb-0">Soil holds three times more carbon than the atmosphere, serving as an essential ecological carbon sink.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 3: Panja Bootham -->
+<div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">Explore the Panja Bootham</h2>
+        <p class="text-muted">The five basic elements constituting all physical realities.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        {% for element in elements %}
+        <div class="col-lg-2.5 col-md-4 col-sm-6">
+            <a href="{% url 'soil:element_detail' element.slug %}" class="text-decoration-none">
+                <div class="p-4 glass-card text-center h-100">
+                    <div class="fs-1 mb-3">
+                        {% if element.key == 'earth' %}🌱{% elif element.key == 'water' %}💧{% elif element.key == 'fire' %}🔥{% elif element.key == 'air' %}💨{% else %}🌌{% endif %}
+                    </div>
+                    <h4 class="text-white h5 mb-2">{{ element.name }}</h4>
+                    <p class="text-muted small mb-0">{{ element.description|truncatewords:8 }}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Section 4: Nature to Self Journey -->
+<div class="container my-5 py-4">
+    <div class="p-5 glass-card text-center text-lg-start">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2 class="text-white fw-bold mb-3">The Nature &rarr; Inner Awareness Journey</h2>
+                <p class="text-muted mb-0">We invite visitors to move from simple curiosity to hands-on experience, volunteer participation, and local community membership. Experience mindfulness and observation through yoga, natural farming, and elements contemplation.</p>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'soil:about' %}" class="gradient-button text-decoration-none d-inline-block">Learn Our Philosophy</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 5: Physical Center -->
+<div class="container my-5 py-4">
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+            <h2 class="text-white fw-bold mb-3">Our Physical Farm & Center</h2>
+            <p class="text-muted">Located amidst quiet agricultural landscapes, the center serves as a living workspace for yoga, meditation, community activities, and natural soil restoration. It is not an orthodox temple, but a space dedicated to contemplation and ecological stewardship.</p>
+            <ul class="text-muted list-unstyled mb-4">
+                <li><strong class="text-white">📍 Location:</strong> Everything Soil Farm & Center</li>
+                <li><strong class="text-white">🕒 Visiting Hours:</strong> 6:00 AM - 6:00 PM</li>
+                <li><strong class="text-white">✨ Key Spaces:</strong> Meditation Path, Yoga Space, Organic Seed Farm</li>
+            </ul>
+            <a href="{% url 'soil:lingeswarar' %}" class="btn btn-outline-success px-4 py-2" style="border-radius: 8px;">Explore Lingeswarar Concept</a>
+        </div>
+        <div class="col-lg-6 text-center">
+            <div class="p-4 glass-card">
+                <h4 class="text-white mb-3">Plan a Visit</h4>
+                <p class="text-muted small">Send a request to spend a day observing the elements at the center.</p>
+                <div class="alert alert-info bg-dark text-white border-secondary small mb-3">
+                    Visit reservation module will open in Phase 3.
+                </div>
+                <button class="btn btn-secondary w-100 disabled" disabled>Request a Visit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 6: Upcoming Experiences -->
+<div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">Typical Experiences</h2>
+        <p class="text-muted">Contemplative activities occurring regularly at our farm.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <h4 class="text-white h5 mb-3">Elements Meditation</h4>
+                <p class="text-muted">A structured meditation focused on aligning breath with natural air, heat, and space elements.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <h4 class="text-white h5 mb-3">Traditional Farming Workshop</h4>
+                <p class="text-muted">Get your hands in the mud and learn natural composting, crop diversification, and native seed preservation.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card h-100">
+                <h4 class="text-white h5 mb-3">Nature Walks</h4>
+                <p class="text-muted">Identify local herbs, birds, and observe traditional water collection ponds in silence.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 7: Community Circles -->
+<div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">Community Circles</h2>
+        <p class="text-muted">Peer groups organizing around specific element paths and actions.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="p-4 glass-card text-center">
+                <div class="fs-2 mb-3">🚜</div>
+                <h4 class="text-white h5">Farming Circle</h4>
+                <p class="text-muted small">Sharing local organic agricultural techniques, seed sharing, and bio-fertilizer recipes.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card text-center">
+                <div class="fs-2 mb-3">🧘</div>
+                <h4 class="text-white h5">Contemplation Circle</h4>
+                <p class="text-muted small">Daily mindfulness updates, yoga schedules, and discussion on Panja Bootham reflections.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 glass-card text-center">
+                <div class="fs-2 mb-3">🤝</div>
+                <h4 class="text-white h5">Volunteers Circle</h4>
+                <p class="text-muted small">Coordinates upcoming restoration drives, planting initiatives, and visitor services.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 8: Active Projects -->
+<div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">Ecological Projects</h2>
+        <p class="text-muted">Active project goals restoring local soil, water, and biodiversity.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="p-4 glass-card">
+                <h4 class="text-white h5 mb-2">Soil Revitalization Drive</h4>
+                <p class="text-muted small">Revitalizing 5 acres of depleted dry pasture land into multi-layer food forest model.</p>
+                <div class="progress bg-dark mb-2" style="height: 8px;">
+                    <div class="progress-bar bg-success" style="width: 65%">65% Funded</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 glass-card">
+                <h4 class="text-white h5 mb-2">Native Tree Garden</h4>
+                <p class="text-muted small">Planting and nursing 1,000 endemic trees to recover groundwater tables and invite birds.</p>
+                <div class="progress bg-dark mb-2" style="height: 8px;">
+                    <div class="progress-bar bg-success" style="width: 40%">40% Funded</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 9: Member Stories -->
+<div class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">Stories from the Soil</h2>
+        <p class="text-muted">Shared experiences from our practitioners and volunteers.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="p-4 glass-card">
+                <blockquote class="blockquote text-muted mb-0 small">
+                    <p>"Observing the water collection ponds during heavy rain taught me how earth absorbs flow. Farming isn't just work; it's a deep meditative interaction."</p>
+                    <footer class="blockquote-footer mt-2">Ramanathan, Volunteer</footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 glass-card">
+                <blockquote class="blockquote text-muted mb-0 small">
+                    <p>"The silent meditation in the open space under stars gave me a completely fresh perspective on silence and scale. Highly recommend visiting the farm."</p>
+                    <footer class="blockquote-footer mt-2">Anjali, Member</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 10: Final Invitation -->
+<div class="container my-5 py-5 text-center">
+    <div class="py-5 glass-card">
+        <h2 class="text-white fw-bold mb-3">Begin Your Element Contemplation</h2>
+        <p class="text-muted mb-4 max-width-md mx-auto" style="max-width: 600px;">
+            Join our mailing list and community circle, read articles on soil science and local ecology, and visit us in person to start your journey.
+        </p>
+        {% if not user.is_authenticated %}
+            <a href="{% url 'account_signup' %}" class="gradient-button text-decoration-none">Sign Up and Join Us</a>
+        {% else %}
+            <a href="{% url 'soil:panja_bootham' %}" class="gradient-button text-decoration-none">Explore Element Practices</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

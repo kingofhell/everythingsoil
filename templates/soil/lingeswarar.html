@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Panja Bootha Lingeswarar - Everything Soil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="text-center mb-5 py-4">
+        <h1 class="display-4 fw-bold text-white mb-3">Panja Bootha Lingeswarar</h1>
+        <p class="lead text-muted max-width-md mx-auto" style="max-width: 700px;">
+            A natural, element-first perspective on traditional form and space.
+        </p>
+    </div>
+
+    <!-- Intro Card -->
+    <div class="p-5 glass-card mb-5 bg-transparent border-start border-success border-4">
+        <h2 class="text-white fw-bold mb-3">Our Core Concept</h2>
+        <p class="text-muted fs-5 mb-0">
+            For Everything Soil, <strong>Panja Bootha Lingeswarar</strong> is a symbol representing the unity of the five elements of nature. The physical center does not operate as an orthodox temple. Instead, it is an open nature facility and contemplative landscape where visitors can observe the elements directly in the environment, farming soil, and human body.
+        </p>
+    </div>
+
+    <!-- Split Grid: Physical representation and Experience -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100">
+                <h3 class="text-white fw-bold h4 mb-3">Why the Physical Space Exists</h3>
+                <p class="text-muted small">
+                    The physical spaces at the center are designed to guide focus:
+                </p>
+                <ul class="text-muted small">
+                    <li class="mb-2"><strong>The Earth Pathway:</strong> To experience physical textures and grounding.</li>
+                    <li class="mb-2"><strong>The Water Collection Pond:</strong> To reflect on moisture flow and storage.</li>
+                    <li class="mb-2"><strong>The Sunset Contemplation Terrace:</strong> To witness fire energy and temperature transitions.</li>
+                    <li class="mb-2"><strong>The Aerated Open Pavilion:</strong> To practice yoga and conscious breathing.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="p-5 glass-card h-100">
+                <h3 class="text-white fw-bold h4 mb-3">Contrasting a Conventional Temple</h3>
+                <p class="text-muted small">
+                    We emphasize:
+                </p>
+                <ul class="text-muted small">
+                    <li class="mb-2"><strong>Observation over Belief:</strong> We encourage observing nature's laws rather than accepting static theological claims.</li>
+                    <li class="mb-2"><strong>Eco-Stewardship as Service:</strong> Planting trees, restoring organic soil carbon, and cleaning local ponds are our primary acts of service.</li>
+                    <li class="mb-2"><strong>Inclusion:</strong> People of all backgrounds, environmentalists, yogic practitioners, and curious minds are welcome.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Callout -->
+    <div class="p-5 glass-card text-center my-5 bg-transparent border border-success-subtle">
+        <h3 class="text-white fw-bold mb-3">Visit the Contemplative Spaces</h3>
+        <p class="text-muted max-width-md mx-auto mb-4" style="max-width: 600px;">
+            Read more about our farm guidelines, check directions, and book a quiet weekend visit at the center.
+        </p>
+        <a href="{% url 'soil:home' %}" class="gradient-button text-decoration-none d-inline-block">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
